@@ -20,7 +20,7 @@ function main() {
           crontab cron.conf &&
           crond -l 8
       fi &&
-        yarn start
+        ./build/main
     }
 }
 
