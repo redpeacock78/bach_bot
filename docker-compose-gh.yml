@@ -24,6 +24,7 @@ services:
     volumes:
       - .:/bot
       - /bot/build
+      - /bot/script
     depends_on:
       - db
     tty: true
