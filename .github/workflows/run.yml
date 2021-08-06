@@ -27,7 +27,7 @@ jobs:
             return runed.data.total_count
           result-encoding: string
       - uses: actions/checkout@v2
-        if: steps.running_count.outputs.result=='1'
+        if: steps.running_count.outputs.result=='0'
       - name: Get random hash
         if: steps.running_count.outputs.result=='0'
         id: hash
