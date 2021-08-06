@@ -29,26 +29,26 @@ jobs:
       - uses: actions/checkout@v2
         if: steps.running_count.outputs.result=='1'
       - name: Get random hash
-        if: steps.running_count.outputs.result=='1'
+        if: steps.running_count.outputs.result=='0'
         id: hash
         run: |
           hash="$(sha256sum <(openssl rand -base64 10)|awk '{print $1}')"
           echo "::set-output name=hash::${hash}"
       - uses: actions/cache@v2
-        if: steps.running_count.outputs.result=='1'
+        if: steps.running_count.outputs.result=='0'
         with:
           path: ./docker
           key: tw_db-${{ steps.hash.outputs.hash }}
           restore-keys: |
             tw_db-
       - name: Judge SEARCH_LIMIT
-        if: steps.running_count.outputs.result=='1'
+        if: steps.running_count.outputs.result=='0'
         id: search_limit
         run: |
             default="${{ secrets.SEARCH_LIMIT }}"
             echo "::set-output name=value::${default:-100}"
       - name: Run
-        if: steps.running_count.outputs.result=='1'
+        if: steps.running_count.outputs.result=='0'
         run: |
           docker-compose -f docker-compose-gh.yml up -d db && \
           docker-compose -f docker-compose-gh.yml up app && \
