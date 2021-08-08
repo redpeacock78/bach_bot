@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "*/10 * * * *"
-  push:
-    branches:
-      - master
+  repository_dispatch:
+    types:
+      - webhook
 
 jobs:
   run:
