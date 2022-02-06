@@ -13,7 +13,9 @@ jobs:
       with:
         fetch-depth: 0
     - name: Update log
-      run: date >> log/revive.log
+      run: |
+        mkdir -p log
+        date >> log/revive.log
     - name: Daily Update Log
       run: |
         git config --global user.name 'Revive Checker'
