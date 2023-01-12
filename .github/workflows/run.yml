@@ -13,12 +13,12 @@ jobs:
     name: Run
     steps:
       - name: Check is running
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         id: running_count
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            const runed = await github.actions.listWorkflowRuns({
+            const runed = await github.rest.actions.listWorkflowRuns({
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: "run.yml"
